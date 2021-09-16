@@ -175,7 +175,17 @@ function handlePlayerArrowCollision() {
       archerCollision.collided ||
       computerCollision.collided
     ) {
-     console.log("PlayerArrow Collided")
+     computerArcherLife -= 1;
+      computer.reduceLife(computerArcherLife);
+      if (computerArcherLife <= 0) {
+        computerArcher.collapse = true;
+        Matter.Body.setStatic(computerArcher.body, false);
+        Matter.Body.setStatic(computer.body, false);
+        Matter.Body.setPosition(computer.body, {
+        x: width - 100,
+        y: computer.body.position.y
+      });
+      }
     }
   }
 }
@@ -202,15 +212,15 @@ function handleComputerArrowCollision() {
       archerCollision.collided ||
       playerCollision.collided
     ) {
-      computerArcherLife -= 1;
-      computer.reduceLife(computerArcherLife);
-      if (computerArcherLife <= 0) {
-        computerArcher.collapse = true;
-        Matter.Body.setStatic(computerArcher.body, false);
-        Matter.Body.setStatic(computer.body, false);
-        Matter.Body.setPosition(computer.body, {
+      playerArcherLife -= 1;
+      player.reduceLife(playerArcherLife);
+      if (playerArcherLife <= 0) {
+        playerArcher.collapse = true;
+        Matter.Body.setStatic(playerArcher.body, false);
+        Matter.Body.setStatic(player.body, false);
+        Matter.Body.setPosition(player.body, {
         x: width - 100,
-        y: computer.body.position.y
+        y: player.body.position.y
       });
       }
     }
