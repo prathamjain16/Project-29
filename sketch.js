@@ -187,6 +187,10 @@ function handlePlayerArrowCollision() {
       });
       }
     }
+    if (computerArcherLife === -3) {
+      GameOver = true;
+      gameOver();
+    }
   }
 }
 
@@ -225,4 +229,21 @@ function handleComputerArrowCollision() {
       }
     }
   }
+}
+
+function gameOver() { 
+  swal( { 
+    title: `Game Over!!!`, 
+    text: "Thanks for playing!!", 
+    imageUrl: "https://raw.githubusercontent.com/whitehatjr/PiratesInvasion/main/assets/boat.png", 
+    imageSize: "150x150", 
+    confirmButtonText: "Play Again" 
+    },
+     function(isConfirm) {
+        if (isConfirm) 
+        {
+           location.reload();
+        } 
+    }
+    ); 
 }
